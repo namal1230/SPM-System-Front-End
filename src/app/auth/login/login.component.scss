@@ -1,0 +1,22 @@
+*{
+  background:url("https://imgs.search.brave.com/uUmetN6-iCsZxVW_RXYWjvnmWBBmTGgQ70ZBJEscCEA/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvMTQ2/NDg4Mi5qcGc") ;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 100vh;
+}
+.inner-div {
+  width: 50vw;
+  height:400px;
+  background: rgba(40, 37, 37, 0.247);
+  position: absolute;
+  border-radius: 20px;
+  top: 25%;
+  left: 25%;
+}
+
+h1{
+  position: relative;
+  top: 0;
+}
