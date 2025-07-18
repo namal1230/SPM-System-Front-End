@@ -1,0 +1,56 @@
+h1{
+  color: white;
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 600;
+}
+
+label{
+  display: block;
+  padding: 6px 30px;
+  font-size: 15px;
+  color: white;
+}
+
+input{
+  margin-left: 20px;
+  width: 80%;
+  height: 25px;
+  background-color: white;
+ color: black;
+}
+
+button{
+  display: block;
+  margin: 30px 18%;
+  width: 60%;
+  height: 35px;
+  background: #053D7C;
+  color: white;
+  border-radius: 25px;
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+p{
+  color: white;
+  text-align: center;
+  font-size: 15px;
+
+  a{
+    color: aliceblue;
+  }
+
+}
+
+.forgot-password{
+  color: aliceblue;
+  text-align: center;
+  margin: auto;
+  left: 0;
+  right: 0;
+  position: absolute;
+}
+

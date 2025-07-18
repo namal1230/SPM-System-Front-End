@@ -7,16 +7,16 @@
   height: 100vh;
 }
 .inner-div {
-  width: 50vw;
-  height:400px;
+  width: 30vw;
+  height:450px;
   background: rgba(40, 37, 37, 0.247);
   position: absolute;
   border-radius: 20px;
-  top: 25%;
-  left: 25%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: auto;
 }
 
-h1{
-  position: relative;
-  top: 0;
-}
