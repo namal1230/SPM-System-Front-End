@@ -4,8 +4,10 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { LoginCredentialsComponent } from './login-credentials/login-credentials.component';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from './register/register.component';
+import { ForgotCredentialsComponent } from './forgot-credentials/forgot-credentials.component';
+import { GoogleAuthenticationComponent } from './google-authentication/google-authentication.component';
 
 
 
@@ -13,17 +15,19 @@ import { RegisterComponent } from './register/register.component';
   declarations: [
     LoginComponent,
     LoginCredentialsComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgotCredentialsComponent,
+    GoogleAuthenticationComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     AppRoutingModule,
-    MatSlideToggleModule
+    MatButtonModule
 ],
   exports: [
-    LoginComponent,
-    LoginCredentialsComponent
+    // LoginComponent,
+    // LoginCredentialsComponent
   ]
 })
 export class AuthModule { }
