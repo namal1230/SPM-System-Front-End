@@ -1,5 +1,6 @@
 declare var google: any; // Declare google variable for Google Sign-In
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-credentials',
@@ -8,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginCredentialsComponent  {
 
-  constructor() { }
+  constructor(private route:Router) { }
 
+  signIn(){
+    this.route.navigate(['/dashboard']);
+  }
 
 }

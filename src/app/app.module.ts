@@ -7,6 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UserModule } from './user/user.module';
+import { HomePageComponent } from './user/home-page/home-page.component';
+import { FooterComponent } from './user/footer/footer.component';
 
 @NgModule({
   declarations: [

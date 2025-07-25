@@ -1,11 +1,11 @@
-*{
-  background:url("https://imgs.search.brave.com/nbdCTJoiOlnmcr0Qj3PqoOamrFfhwpBFSgTasgimDQ0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzQwLzEyLzky/LzM2MF9GXzI0MDEy/OTIzNF92QWJqanNM/aElPbVNTcUNveWww/MXVHZW9TY0loM016/by5qcGc") ;
-  background-attachment: fixed;
-  background-size: 100% 70%;
-  background-position: top;
-  background-repeat: no-repeat;
-  height: 100vh;
-}
+// p{
+//   background:url("https://imgs.search.brave.com/nbdCTJoiOlnmcr0Qj3PqoOamrFfhwpBFSgTasgimDQ0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90My5m/dGNkbi5uZXQvanBn/LzAyLzQwLzEyLzky/LzM2MF9GXzI0MDEy/OTIzNF92QWJqanNM/aElPbVNTcUNveWww/MXVHZW9TY0loM016/by5qcGc") ;
+//   background-attachment: fixed;
+//   background-size: 100% 70%;
+//   background-position: top;
+//   background-repeat: no-repeat;
+//   height: 100vh;
+// }
 
 img {
   position: absolute;
@@ -13,3 +13,14 @@ img {
   height: 60%;
 
 }
+
+#background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70%;
+  z-index: -1;
+}
+
+
