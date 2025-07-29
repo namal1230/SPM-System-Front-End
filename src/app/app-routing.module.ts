@@ -6,6 +6,7 @@ import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { FindPageComponent } from './user/find-page/find-page.component';
 import { HomePageComponent } from './user/home-page/home-page.component';
+import { AiAssistantComponent } from './user/ai-assistant/ai-assistant.component';
 
 const routes: Routes = [
   {path: '',component: LoginComponent, children:[
@@ -18,6 +19,7 @@ const routes: Routes = [
     {path: 'find-page', component: FindPageComponent}
   ]},
   {path: 'find-page', component: FindPageComponent},
+  {path: 'ai-assistant',component: AiAssistantComponent}
 
 ];
 

@@ -11,6 +11,7 @@ import { GoogleMapsModule } from '@angular/google-maps';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { MatTableModule } from '@angular/material/table';
+import { AiAssistantComponent } from './ai-assistant/ai-assistant.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MatTableModule } from '@angular/material/table';
     HeadingComponent,
     HomePageComponent,
     FooterComponent,
-    FindPageComponent
+    FindPageComponent,
+    AiAssistantComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +35,8 @@ import { MatTableModule } from '@angular/material/table';
     DashboardComponent,
     HomePageComponent,
     FooterComponent,
-    FindPageComponent
+    FindPageComponent,
+    AiAssistantComponent
   ]
 })
 export class UserModule { }
