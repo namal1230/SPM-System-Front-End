@@ -9,6 +9,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UserModule } from './user/user.module';
 import { HomePageComponent } from './user/home-page/home-page.component';
 import { FooterComponent } from './user/footer/footer.component';
+import { GoogleMapsModule } from '@angular/google-maps';
 
 @NgModule({
   declarations: [

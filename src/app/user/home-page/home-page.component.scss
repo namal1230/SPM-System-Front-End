@@ -1,0 +1,20 @@
+#medicine-img{
+  margin-top: 50px;
+}
+#home{
+  margin-top: 70px;
+  text-align: center;
+  font-size: larger;
+  font-weight: 400;
+  // padding-top: 90px;
+  padding-bottom: 90px;
+  padding-left: 30px;
+  width: 85%;
+}
+#home-container{
+  background-color: rgba(46, 44, 44, 0.411);
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: auto auto;
+  grid-auto-flow: column;
+}

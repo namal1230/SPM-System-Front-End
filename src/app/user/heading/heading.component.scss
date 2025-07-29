@@ -22,5 +22,39 @@ img {
   height: 70%;
   z-index: -1;
 }
+nav{
+  top: 0;
+  position: sticky;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.177);
+  z-index: 6;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
+
+a{
+  color: rgb(172, 194, 206);
+  text-decoration: none;
+  padding: 10px;
+  font-size: 20px;
+  font-weight: 200;
+}
+
+#image{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+#signOut{
+  background-color: rgba(46, 44, 44, 0.411);
+  text-align: center;
+  height: 100%;
+}
+
+p{
+  width: 180px;
+}
 
