@@ -10,6 +10,7 @@ import { UserModule } from './user/user.module';
 import { HomePageComponent } from './user/home-page/home-page.component';
 import { FooterComponent } from './user/footer/footer.component';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { PharmacistModule } from './pharmacist/pharmacist.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { GoogleMapsModule } from '@angular/google-maps';
     AuthModule,
     BrowserAnimationsModule,
     MatSlideToggleModule,
-    UserModule
+    UserModule,
+    PharmacistModule
   ],
   providers: [],
   bootstrap: [AppComponent]
