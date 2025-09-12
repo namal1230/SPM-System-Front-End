@@ -29,7 +29,7 @@ import { AiAssistantComponent } from './ai-assistant/ai-assistant.component';
     GoogleMapsModule,
     FormsModule,
     AppRoutingModule,
-    MatTableModule
+    MatTableModule,
 ],
   exports: [
     DashboardComponent,

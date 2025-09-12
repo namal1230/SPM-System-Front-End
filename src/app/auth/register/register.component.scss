@@ -20,6 +20,15 @@ input{
  color: black;
 }
 
+.role{
+  display: none;
+}
+
+mat-label {
+  color: white !important;
+}
+
+
 button{
   display: block;
   margin: 30px 18%;
@@ -54,3 +63,18 @@ p{
   position: absolute;
 }
 
+mat-form-field{
+  padding-top: 10px;
+  padding-left: 20px;
+  width: 25vw;
+}
+
+.button{
+  display: block;
+  margin: 30px 18%;
+  width: 60%;
+  height: 35px;
+  background: #053D7C;
+  color: white;
+  border-radius: 25px;
+}

@@ -8,7 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { RegisterComponent } from './register/register.component';
 import { ForgotCredentialsComponent } from './forgot-credentials/forgot-credentials.component';
 import { GoogleAuthenticationComponent } from './google-authentication/google-authentication.component';
-
+import { ObserversModule } from "@angular/cdk/observers";
+import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -23,11 +26,17 @@ import { GoogleAuthenticationComponent } from './google-authentication/google-au
     CommonModule,
     FormsModule,
     AppRoutingModule,
-    MatButtonModule
+    MatButtonModule,
+    ObserversModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule
 ],
   exports: [
-    // LoginComponent,
-    // LoginCredentialsComponent
+    LoginComponent,
+    LoginCredentialsComponent,
+    RegisterComponent,
+    ForgotCredentialsComponent
   ]
 })
 export class AuthModule { }

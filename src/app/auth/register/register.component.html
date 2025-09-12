@@ -1,12 +1,26 @@
-<h1>SignUp Page</h1>
-<label>User Name</label>
-<input type="text" placeholder="UserName">
-<label>User Email</label>
-<input type="text" placeholder="UserEmail">
-<label>Password</label>
-<input type="password" placeholder="Password">
-<label>Confirm Password</label>
-<input type="password" placeholder="Confirm Password">
-<button>Sign Up</button>
-<p>Already have an account? <a routerLink="/login">Login</a></p>
+ <h1>SignUp Page</h1>
+<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+
+  <label>User Name</label>
+  <input type="text" ngModel name="username" id="username" placeholder="UserName">
+
+  <label>User Email</label>
+  <input type="text" ngModel name="email" id="email" placeholder="UserEmail">
+
+  <label>Password</label>
+  <input type="password" ngModel name="password" id="password" placeholder="Password">
+
+  <label>Confirm Password</label>
+  <input type="password" ngModel name="confirm-password" id="confirm-password" placeholder="Confirm Password">
+
+  <mat-form-field  appearance="outline" [color]="'primary'">
+    <mat-label>User Role</mat-label>
+    <select ngModel name="role" id="role"matNativeControl maxlength="10" required>
+      <option value="USER">User</option>
+      <option value="PHARMACY">Pharmacist</option>
+    </select>
+  </mat-form-field>
+  <input matButton="outlined" class="button" type="submit" value="Register">
+</form>
+<p>Already have an account? <a routerLink="/">Login</a></p>
 

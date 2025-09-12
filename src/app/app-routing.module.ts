@@ -8,21 +8,22 @@ import { FindPageComponent } from './user/find-page/find-page.component';
 import { HomePageComponent } from './user/home-page/home-page.component';
 import { AiAssistantComponent } from './user/ai-assistant/ai-assistant.component';
 import { DashboardPharmacistComponent } from './pharmacist/dashboard-pharmacist/dashboard-pharmacist.component';
+import { AiPharmacistComponent } from './pharmacist/ai-pharmacist/ai-pharmacist.component';
 
 const routes: Routes = [
   {path: '',component: LoginComponent, children:[
     {path:'',component:LoginCredentialsComponent},
-    {path:'register',component:RegisterComponent}
+    {path:'login/register',component:RegisterComponent}
   ]},
-  // {path: 'dashboard', component: DashboardComponent, children: [
-  //   {path: '', redirectTo: 'home', pathMatch: 'full'},
-  //   {path: 'home', component: HomePageComponent},
-  //   {path: 'find-page', component: FindPageComponent}
-  // ]},
-  {path: 'find-page', component: FindPageComponent},
-  {path: 'ai-assistant',component: AiAssistantComponent},
-  {path: 'dashboard', component: DashboardPharmacistComponent, children: [
-  ]}
+  {path: 'dashboard', component: DashboardComponent, children: [
+    {path: '', redirectTo: 'home', pathMatch: 'full'},
+    {path: 'home', component: HomePageComponent},
+    {path: 'find-page', component: FindPageComponent}
+  ]},
+  // {path: 'find-page', component: FindPageComponent},
+  // {path: 'ai-assistant',component: AiAssistantComponent},
+  // {path: 'ai-assistant-pharmacist',component: AiPharmacistComponent},
+  {path: 'dashboard-pharmacist', component: DashboardPharmacistComponent}
 ];
 
 @NgModule({

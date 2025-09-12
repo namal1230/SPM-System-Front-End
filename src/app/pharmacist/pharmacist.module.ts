@@ -7,22 +7,27 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
+import { AppRoutingModule } from "src/app/app-routing.module";
+import { AiPharmacistComponent } from './ai-pharmacist/ai-pharmacist.component';
 
 @NgModule({
   declarations: [
     DashboardPharmacistComponent,
     HeadingComponent,
-    FooterComponent
+    FooterComponent,
+    AiPharmacistComponent,
   ],
   imports: [
     CommonModule,
     MatTableModule,
     MatSortModule,
     MatButtonModule,
-    MatTabsModule
-  ],
+    MatTabsModule,
+    AppRoutingModule
+],
   exports: [
-    DashboardPharmacistComponent
+    DashboardPharmacistComponent,
+    AiPharmacistComponent
   ]
 })
 export class PharmacistModule { }
