@@ -1,52 +1,95 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort, Sort } from '@angular/material/sort';
+import { HttpClient } from '@angular/common/http';
 
 export interface PeriodicElement {
+  id:number;
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  brand: string;
+  category: string;
+  price: number;
+  quantity: number;
+  expiry: string;
+  button: any;
 }
-const ELEMENT_DATA: PeriodicElement[] = [
-  {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
-  {position: 2, name: 'Helium', weight: 4.0026, symbol: 'He'},
-  {position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li'},
-  {position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be'},
-  {position: 5, name: 'Boron', weight: 10.811, symbol: 'B'},
-  {position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C'},
-  {position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N'},
-  {position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O'},
-  {position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F'},
-  {position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne'},
-];
+
 @Component({
   selector: 'app-dashboard-pharmacist',
   templateUrl: './dashboard-pharmacist.component.html',
   styleUrls: ['./dashboard-pharmacist.component.scss']
 })
-export class DashboardPharmacistComponent implements AfterViewInit{
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+export class DashboardPharmacistComponent implements AfterViewInit, OnInit {
 
-  @ViewChild(MatSort)
-  sort: MatSort = new MatSort;
-  _liveAnnouncer: any;
+  displayedColumns: string[] = ['id','name', 'brand', 'category','price','quantity','button'];
+  dataSource = new MatTableDataSource<PeriodicElement>([]);
+
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private http: HttpClient) {}
+
+ ngOnInit(): void {
+  this.http.get<PeriodicElement | PeriodicElement[]>(
+    "http://localhost:8080/api/v1/pharmacy/get-medicine"
+  ).subscribe((res) => {
+    console.log(res);
+
+    if (Array.isArray(res)) {
+      // Case: backend returns a list
+      this.dataSource = new MatTableDataSource(res);
+    } else {
+      // Case: backend returns a single object
+      this.dataSource = new MatTableDataSource([res]);
+    }
+
+    this.dataSource.sort = this.sort;
+  });
+}
+
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
   }
 
-  /** Announce the change in sort state for assistive technology. */
   announceSortChange(sortState: Sort) {
-    // This example uses English messages. If your application supports
-    // multiple language, you would internationalize these strings.
-    // Furthermore, you can customize the message to add additional
-    // details about the values being sorted.
     if (sortState.direction) {
-      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+      console.log(`Sorted ${sortState.direction}ending`);
     } else {
-      this._liveAnnouncer.announce('Sorting cleared');
+      console.log('Sorting cleared');
     }
   }
+
+  //////////////////////////////////
+
+  searchKey: string = '';
+  list:Array<any> = [];
+
+  loadData(){
+    this.http.get<PeriodicElement | PeriodicElement[]>(
+      "http://localhost:8080/api/v1/pharmacy/get-medicine-by-name?key="+this.searchKey
+    ).subscribe((res) => {
+      console.log(res);
+  
+      if (Array.isArray(res)) {
+        // Case: backend returns a list
+        this.dataSource = new MatTableDataSource(res);
+      } else {
+        // Case: backend returns a single object
+        this.dataSource = new MatTableDataSource([res]);
+      }
+  
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  delete(id:any){
+    if(confirm("Are you sure to delete this record ? "+id)){
+      this.http.delete("http://localhost:8080/api/v1/pharmacy/delete-medicine?medicine="+id)
+      .subscribe(res=>{
+        alert('Medicine Deleted Successfully..!');
+        this.loadData();
+      });
+    }
+  }
+
 }

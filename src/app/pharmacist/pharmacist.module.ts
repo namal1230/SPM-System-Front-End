@@ -9,6 +9,14 @@ import { MatButton, MatButtonModule } from '@angular/material/button';
 import {MatTabsModule} from '@angular/material/tabs';
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { AiPharmacistComponent } from './ai-pharmacist/ai-pharmacist.component';
+import { SaveMedicineComponent } from './save-medicine/save-medicine.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { UpdateMedicineComponent } from './update-medicine/update-medicine.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+// import { MatFormFieldControl } from '@angular/material/form-field';
+
 
 @NgModule({
   declarations: [
@@ -16,6 +24,8 @@ import { AiPharmacistComponent } from './ai-pharmacist/ai-pharmacist.component';
     HeadingComponent,
     FooterComponent,
     AiPharmacistComponent,
+    SaveMedicineComponent,
+    UpdateMedicineComponent,
   ],
   imports: [
     CommonModule,
@@ -23,7 +33,12 @@ import { AiPharmacistComponent } from './ai-pharmacist/ai-pharmacist.component';
     MatSortModule,
     MatButtonModule,
     MatTabsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatFormFieldModule,
+    MatInputModule,
 ],
   exports: [
     DashboardPharmacistComponent,

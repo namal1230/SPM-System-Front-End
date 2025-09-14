@@ -7,27 +7,36 @@ export class UserAuthService {
 
   constructor() { }
 
-  // public setRoles(roles:[]){
-  //   localStorage.setItem("roles",JSON.stringify(roles));
-  // }
+  public setRoles(roles:[]){
+    localStorage.setItem("roles",JSON.stringify(roles));
+  }
 
-  // public getRoles():[]{
-  //   return JSON.parse(localStorage.getItem("roles")||'[]');
-  // }
+   public getRoles():[]{
+    return JSON.parse(localStorage.getItem("roles")||'[]');
+  }
 
-  // public setToken(token:string){
-  //   localStorage.setItem("token",token);
-  // }
+  public setUserName(username:string){
+    localStorage.setItem("username",username);
+  }
 
-  // public getToken():string{
-  //   return localStorage.getItem("token")||'';
-  // }
+  public getUserName():string{
+    return localStorage.getItem("username")||'';
+  }
 
-  // public clear(){
-  //   localStorage.clear();
-  // }
 
-  // public isLoggedIn(){
-  //   return this.getRoles() && this.getToken();
-  // }
+  public setToken(token:string){
+    localStorage.setItem("token",token);
+  }
+
+  public getToken():string{
+    return localStorage.getItem("token")||'';
+  }
+
+  public clear(){
+    localStorage.clear();
+  }
+
+  public isLoggedIn(){
+    return this.getRoles() && this.getToken();
+  }
 }

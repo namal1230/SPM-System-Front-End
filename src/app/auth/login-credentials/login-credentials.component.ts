@@ -18,7 +18,11 @@ export class LoginCredentialsComponent  {
   signIn(loginForm:NgForm){
     this.mainService.login(loginForm.value).subscribe(
       (response:any)=>{
-        // console.log(response.jwtToken);
+        alert("Login Successful");
+        console.log(response.jwtToken);
+        this.userAuthSevice.setRoles(response.authority);
+        this.userAuthSevice.setToken(response.jwtToken);
+        this.userAuthSevice.setUserName(response.username);
 
         if(response.authority==="ADMIN"){
           console.log("admin");
@@ -26,10 +30,18 @@ export class LoginCredentialsComponent  {
         } else if(response.authority==="USER"){
           console.log("user");
           this.route.navigate(['/dashboard']);
+        } else if(response.authority==="PHARMACY"){
+          console.log("pharmacy");
+          this.route.navigate(['/dashboard-pharmacist']);
+        } else {
+          console.log("unknown user");
+          this.route.navigate(['/']);
         }
         console.log(response);
       },(error:any)=>{
         console.log(error);
+        this.route.navigate(['/']);
+        alert("Invalid Credentials");
       }
     );
     this.route.navigate(['/dashboard']);

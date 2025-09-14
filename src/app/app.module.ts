@@ -12,11 +12,12 @@ import { FooterComponent } from './user/footer/footer.component';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { PharmacistModule } from './pharmacist/pharmacist.module';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { HttpManagerInterceptor } from './http-manager.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,9 +35,15 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     RouterModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:HttpManagerInterceptor,
+      multi:true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

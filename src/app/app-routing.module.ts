@@ -20,9 +20,9 @@ const routes: Routes = [
     {path: 'home', component: HomePageComponent},
     {path: 'find-page', component: FindPageComponent}
   ]},
-  // {path: 'find-page', component: FindPageComponent},
-  // {path: 'ai-assistant',component: AiAssistantComponent},
-  // {path: 'ai-assistant-pharmacist',component: AiPharmacistComponent},
+  {path: 'find-page', component: FindPageComponent},
+  {path: 'ai-assistant',component: AiAssistantComponent},
+  {path: 'ai-assistant-pharmacist',component: AiPharmacistComponent},
   {path: 'dashboard-pharmacist', component: DashboardPharmacistComponent}
 ];
 
