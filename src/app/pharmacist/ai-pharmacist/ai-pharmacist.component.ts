@@ -9,7 +9,7 @@ import { RequestServiceService } from '../../request-service.service';
 })
 export class AiPharmacistComponent {
   question: string = '';
-  
+  AIResponse: string = '';
   constructor(private http:HttpClient,
     private baseURL:RequestServiceService
   ) {}
@@ -18,7 +18,8 @@ export class AiPharmacistComponent {
     console.log('Question sent to AI:', this.question);
     this.http.get('http://localhost:8080/api/v1/ai/'+ this.question)
       .subscribe((response: any) => {
-        console.log('AI Response:', response.answer);
+        console.log('AI Response:', response.data);
+        this.AIResponse = response.data;
         // Handle the AI response (e.g., display it in the UI)
       }, (error) => {
         console.error('Error occurred while communicating with AI service:', error);
