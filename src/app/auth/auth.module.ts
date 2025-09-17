@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { LoginCredentialsComponent } from './login-credentials/login-credentials.component';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,6 +12,7 @@ import { ObserversModule } from "@angular/cdk/observers";
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { PharmacyRegistrationComponent } from './pharmacy-registration/pharmacy-registration.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     LoginCredentialsComponent,
     RegisterComponent,
     ForgotCredentialsComponent,
-    GoogleAuthenticationComponent
+    GoogleAuthenticationComponent,
+    PharmacyRegistrationComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,9 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     ObserversModule,
     MatInputModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule
 ],
   exports: [
     LoginComponent,

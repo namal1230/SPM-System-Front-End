@@ -22,16 +22,19 @@ export class AppComponent {
       // send to backend
       this.auth.loginWithGoogle(idToken).subscribe({
         next: (res:any) => {
-          localStorage.setItem('app_jwt', res.token);
+          localStorage.setItem('token', res.jwtToken);
+          localStorage.setItem('userRole', res.authority);
+          localStorage.setItem('id', res.id);
           console.log("Backend JWT:", res.jwtToken);
-          if(res.authority==="User not found"){
+          
+          if(res.authority==="User not found" || res.authority==="User Not Found"){
             alert("User not found! Please register first.");
           } else if(res.authority==="ADMIN"){
               router.navigate(['/admin-dashboard']);
           } else if(res.authority==="USER"){
               router.navigate(['/dashboard']);
-          } else if(res.authority==="PARMACY"){
-              router.navigate(['/pharmacy-dashboard']);
+          } else if(res.authority==="PHARMACY"){
+              router.navigate(['/dashboard-pharmacist']);
           }
         },
         error: (err) => console.error(err)

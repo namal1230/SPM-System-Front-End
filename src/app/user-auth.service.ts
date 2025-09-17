@@ -39,4 +39,12 @@ export class UserAuthService {
   public isLoggedIn(){
     return this.getRoles() && this.getToken();
   }
+
+  public setUserId(id:number){
+    localStorage.setItem("id",id.toString());
+  }
+
+  public getUserId():number{
+    return Number(localStorage.getItem("id")||'');
+  }
 }

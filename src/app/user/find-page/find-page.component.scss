@@ -1,49 +1,22 @@
-#map{
-  width: 50%!important;
-  height: 350px!important;
-  background-color: aqua;
-}
-
-#form-layout {
-  width: 60%;
-  margin-top: 380px;
-  margin-left: 20%;
-  justify-content: center;
-  // margin: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  background-color: rgba(201, 214, 215, 0.486);
-}
-
-
-.mat-mdc-row .mat-mdc-cell {
-  border-bottom: 1px solid transparent;
-  border-top: 1px solid transparent;
-  cursor: pointer;
-}
-
-.mat-mdc-row:hover .mat-mdc-cell {
-  border-color: currentColor;
-}
-
-.demo-row-is-clicked {
-  font-weight: bold;
-}
-
-#table{
-  margin-top: 20px;
-  // margin-left: 50%;
-  // margin-right: 50%;
-  width: 50% !important;
-  display: inline-block;
-}
-
-#container{
-  display: flex;
-}
-
 #footer{
   margin-top: 200px;
+}
+
+form{
+  width: 500px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding-top: 390px;
+  color: blanchedalmond;
+}
+
+table{
+  margin-top: 30px;
+}
+
+button{
+  // margin-top: 30px;
+  // margin-bottom: 30px;
 }
 

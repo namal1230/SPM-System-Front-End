@@ -1,98 +1,109 @@
 <app-heading></app-heading>
 
-<form id="form-layout">
-  <div class="space-y-12">
-    <!-- <div class="border-b border-gray-900/10 pb-12"> -->
-  </div>
+<form [formGroup]="form" (ngSubmit)="createData()">
+    
+    <div class="form-group">
+      <label for="name">Medicine Name</label>
+      <input formControlName="name" type="text" class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input formControlName="location" type="text" class="form-control" id="location">
+    </div>
+    <div class="form-group">
+      <label for="qty">Quantity</label>
+      <input formControlName="qty" type="number" class="form-control" id="qty">
+    </div>
 
-
-      <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-        <div class="sm:col-span-3">
-          <label for="first-name" class="block text-sm/6 font-medium text-gray-900">First name</label>
-          <div class="mt-2">
-            <input id="first-name" type="text" name="first-name" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
-          </div>
-        </div>
-
-        <div class="sm:col-span-3">
-          <label for="last-name" class="block text-sm/6 font-medium text-gray-900">Last name</label>
-          <div class="mt-2">
-            <input id="last-name" type="text" name="last-name" autocomplete="family-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
-          </div>
-        </div>
-
-        <div class="sm:col-span-4">
-          <label for="email" class="block text-sm/6 font-medium text-gray-900">Email address</label>
-          <div class="mt-2">
-            <input id="email" type="email" name="email" autocomplete="email" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" />
-          </div>
-        </div>
-
-        <div class="sm:col-span-3">
-          <label for="country" class="block text-sm/6 font-medium text-gray-900">Country</label>
-          <div class="mt-2 grid grid-cols-1">
-            <select id="country" name="country" autocomplete="country-name" class="col-start-1 row-start-1 w-full appearance-none rounded-md bg-white py-1.5 pr-8 pl-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
-              <option>United States</option>
-              <option>Canada</option>
-              <option>Mexico</option>
-            </select>
-            <svg viewBox="0 0 16 16" fill="currentColor" data-slot="icon" aria-hidden="true" class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4">
-              <path d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" fill-rule="evenodd" />
-            </svg>
-          </div>
-        </div>
-        </div>
-
-  <div class="mt-6 flex items-center justify-end gap-x-6">
-    <button type="button" class="text-sm/6 font-semibold text-gray-900">Cancel</button>
-    <button type="submit" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
-  </div>
+  <button [disabled]="form.invalid" type="submit" class="col-12 btn btn-primary">Find</button>
 </form>
 
-
+<!-- --------------------------------------  -->
 
 <div id="container">
   <div id="table">
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+    <div id="table-container">
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange"
+        class="mat-elevation-z8">
 
-        <ng-container matColumnDef="position">
-          <th mat-header-cell *matHeaderCellDef>No.</th>
-          <td mat-cell *matCellDef="let element">{{element.position}}</td>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
+            Medicine ID
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
 
-
+        <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef>Name</th>
-          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
+            Medicine Name
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
-
-        <ng-container matColumnDef="weight">
-          <th mat-header-cell *matHeaderCellDef>Weight</th>
-          <td mat-cell *matCellDef="let element">{{element.weight}}</td>
+        <!-- Brand Column -->
+        <ng-container matColumnDef="brand">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by brand">
+            Brand
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
         </ng-container>
 
-
-        <ng-container matColumnDef="symbol">
-          <th mat-header-cell *matHeaderCellDef>Symbol</th>
-          <td mat-cell *matCellDef="let element">{{element.symbol}}</td>
+        <!-- Category Column -->
+        <ng-container matColumnDef="category">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by category">
+            Category
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.category}} </td>
         </ng-container>
 
+        <!-- Price Column -->
+        <ng-container matColumnDef="price">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price">
+            Price
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+        </ng-container>
+
+        <!-- Quantity Column -->
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity">
+            Quantity
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        </ng-container>
+
+        <!-- Expiry Column -->
+        <ng-container matColumnDef="expiry">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by expiry">
+            Expiry Date
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.expiry}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="button">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>
+            Options
+          </th>
+          <td mat-cell *matCellDef="let element"><button style="color: white!important; background-color: rgb(148, 224, 107)!important; padding: 10px; border-radius: 5px;">Request </button>
+          <button style="color: white!important; background-color: rgb(107, 154, 224)!important; padding: 10px; border-radius: 5px;">Pay </button>
+          <button style="color: white!important; background-color: rgb(229, 236, 42)!important; padding: 10px; border-radius: 5px;">View Pharmay </button>
+          </td>
+        </ng-container>
+
+        <!-- Header and Row Rendering -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr
-            mat-row
-            (click)="clickedRows.add(row)"
-            [class.demo-row-is-clicked]="clickedRows.has(row)"
-            *matRowDef="let row; columns: displayedColumns;"
-        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+    </div>
+    </div>
   </div>
 
-  <div id="map">
+
+  <!-- <div id="map">
     <div  #mapContainer style="height: 500px; width: 100%;"></div>
     <div #map style=" width: 100%;"></div>
-  </div>
-</div>
+  </div> -->
 
 <div id="footer">
   <app-footer></app-footer>

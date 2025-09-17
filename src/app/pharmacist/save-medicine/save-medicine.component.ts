@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { identifierName } from '@angular/compiler';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RequestServiceService } from 'src/app/request-service.service';
@@ -28,7 +29,8 @@ export class SaveMedicineComponent {
       category:this.form.get('category')?.value,
       price:this.form.get('price')?.value,
       quantity:this.form.get('quantity')?.value,
-      expiryDate:this.form.get('expir')?.value
+      expiry:this.form.get('expir')?.value,
+      userId:localStorage.getItem("id")
     })
     .subscribe(res=>{
       if(res){

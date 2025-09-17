@@ -30,11 +30,11 @@ export class DashboardPharmacistComponent implements AfterViewInit, OnInit {
 
  ngOnInit(): void {
   this.http.get<PeriodicElement | PeriodicElement[]>(
-    "http://localhost:8080/api/v1/pharmacy/get-medicine"
+    "http://localhost:8080/api/v1/pharmacy/get-medicine?id="+localStorage.getItem("id")
   ).subscribe((res) => {
     console.log(res);
 
-    if (Array.isArray(res)) {
+    if (Array.isArray(res)) { 
       // Case: backend returns a list
       this.dataSource = new MatTableDataSource(res);
     } else {
@@ -66,7 +66,7 @@ export class DashboardPharmacistComponent implements AfterViewInit, OnInit {
 
   loadData(){
     this.http.get<PeriodicElement | PeriodicElement[]>(
-      "http://localhost:8080/api/v1/pharmacy/get-medicine-by-name?key="+this.searchKey
+      "http://localhost:8080/api/v1/pharmacy/get-medicine-by-name?key="+this.searchKey+"&id="+localStorage.getItem("id")
     ).subscribe((res) => {
       console.log(res);
   

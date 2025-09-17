@@ -18,18 +18,18 @@ constructor(private http: HttpClient,
   
     loadData(){
       this.http.get<any>(
-        "http://localhost:8080/api/v1/pharmacy/get-medicine-by-name?key="+this.searchKey
+        "http://localhost:8080/api/v1/pharmacy/get-medicine-by-name?key="+this.searchKey+"&id="+localStorage.getItem("id")
       ).subscribe((res) => {
         console.log(res);
     
         this.form.patchValue({
-          id: res[0].id,
-          name: res[0].name,
-          brand: res[0].brand,
-          category: res[0].category,
-          price: res[0].price,
-          quantity: res[0].quantity,
-          expir: res[0].expiry
+          id: res.id,
+          name: res.name,
+          brand: res.brand,
+          category: res.category,
+          price: res.price,
+          quantity: res.quantity,
+          expir: res.expiry
         });
       });
     }
@@ -52,7 +52,7 @@ constructor(private http: HttpClient,
       category:this.form.get('category')?.value,
       price:this.form.get('price')?.value,
       quantity:this.form.get('quantity')?.value,
-      expiryDate:this.form.get('expir')?.value
+      expiry:this.form.get('expir')?.value
     })
     .subscribe(res=>{
       if(res){

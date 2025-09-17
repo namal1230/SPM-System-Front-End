@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { OnInit, NgZone } from '@angular/core';
 import { AuthService } from '../../auth.service';
 import { Route, Router } from '@angular/router';
+import { MainServiceService } from 'src/app/main-service.service';
+import { UserAuthService } from 'src/app/user-auth.service';
 declare const google: any;
 
 @Component({
@@ -12,7 +14,9 @@ declare const google: any;
 
 export class GoogleAuthenticationComponent {
  private CLIENT_ID = '29161724059-4nqt8jhluupqi35ufpaqotu1ak2gfbaa.apps.googleusercontent.com';
-constructor(private auth: AuthService, private ngZone: NgZone,private route:Router) {}
+constructor(private auth: AuthService,
+  private route:Router
+) {}
 
   ngOnInit(): void {
     // initialize GSI
@@ -33,10 +37,11 @@ constructor(private auth: AuthService, private ngZone: NgZone,private route:Rout
     const idToken = response.credential;
     // send to backend to verify & exchange for app JWT
     this.auth.loginWithGoogle(idToken).subscribe({
-      next: (res) => {
+      next: (res:any) => {
+        alert('Login Successful..!'+res.authority);
         console.log(res);
         // res should contain your app JWT (e.g. { token: '...' })
-        localStorage.setItem('app_jwt', res.token);
+        localStorage.setItem('app_jwt', res.jwtToken);
         this.route.navigate(['/dashboard']);
       },
       error: (err) => console.error(err)

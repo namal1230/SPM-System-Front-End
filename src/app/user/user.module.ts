@@ -8,10 +8,12 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { FindPageComponent } from './find-page/find-page.component';
 import { GoogleMapsModule } from '@angular/google-maps';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { MatTableModule } from '@angular/material/table';
 import { AiAssistantComponent } from './ai-assistant/ai-assistant.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,10 @@ import { AiAssistantComponent } from './ai-assistant/ai-assistant.component';
     FormsModule,
     AppRoutingModule,
     MatTableModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule
 ],
   exports: [
     DashboardComponent,

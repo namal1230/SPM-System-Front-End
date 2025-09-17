@@ -9,11 +9,13 @@ import { HomePageComponent } from './user/home-page/home-page.component';
 import { AiAssistantComponent } from './user/ai-assistant/ai-assistant.component';
 import { DashboardPharmacistComponent } from './pharmacist/dashboard-pharmacist/dashboard-pharmacist.component';
 import { AiPharmacistComponent } from './pharmacist/ai-pharmacist/ai-pharmacist.component';
+import { PharmacyRegistrationComponent } from './auth/pharmacy-registration/pharmacy-registration.component';
 
 const routes: Routes = [
   {path: '',component: LoginComponent, children:[
     {path:'',component:LoginCredentialsComponent},
-    {path:'login/register',component:RegisterComponent}
+    {path:'login/register',component:RegisterComponent},
+    {path:'register-pharmacy',component:PharmacyRegistrationComponent}
   ]},
   {path: 'dashboard', component: DashboardComponent, children: [
     {path: '', redirectTo: 'home', pathMatch: 'full'},

@@ -23,7 +23,7 @@ export class LoginCredentialsComponent  {
         this.userAuthSevice.setRoles(response.authority);
         this.userAuthSevice.setToken(response.jwtToken);
         this.userAuthSevice.setUserName(response.username);
-
+        this.userAuthSevice.setUserId(response.id);
         if(response.authority==="ADMIN"){
           console.log("admin");
           this.route.navigate(['/dashboard-pharmacist']);
