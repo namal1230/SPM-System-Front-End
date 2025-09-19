@@ -1,4 +1,4 @@
- <h1>SignUp Page</h1>
+<h1>SignUp Page</h1>
 <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
 
   <label>User Name</label>
@@ -13,9 +13,9 @@
   <label>Confirm Password</label>
   <input type="password" ngModel name="confirm-password" id="confirm-password" placeholder="Confirm Password">
 
-  <mat-form-field  appearance="outline" [color]="'primary'">
+  <mat-form-field appearance="outline" [color]="'primary'">
     <mat-label>User Role</mat-label>
-    <select ngModel name="role" id="role"matNativeControl maxlength="10" required>
+    <select ngModel name="role" id="role" matNativeControl maxlength="10" required>
       <option value="USER">User</option>
       <option value="PHARMACY">Pharmacist</option>
     </select>
@@ -25,4 +25,3 @@
   <input matButton="outlined" class="button" type="submit" value="Register">
 </form>
 <p>Already have an account? <a routerLink="/">Login</a></p>
-

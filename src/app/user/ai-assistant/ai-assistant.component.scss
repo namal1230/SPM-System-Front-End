@@ -7,7 +7,7 @@
   background-size: cover;
 }
 #inner-box{
-  background-color: rgba(255, 255, 255, 0.133);
+  background-color: rgba(255, 255, 255, 0.999);
   width: 50%;
   height: 100%;
   margin-left: 25%;
@@ -15,4 +15,18 @@
   padding: 20px;
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+span{
+  color: black;
+  font-size: 10px;
+  margin-top: 20px;
+  padding-top: 20px;
+  height: 90%;
+  width: 100%;
+  display: inline-block;
+  word-wrap: break-word;  
+  overflow-wrap: break-word;
+  white-space: normal;     
+  max-width: 100%;     
 }

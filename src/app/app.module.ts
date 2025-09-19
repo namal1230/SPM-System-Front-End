@@ -18,6 +18,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { HttpManagerInterceptor } from './http-manager.interceptor';
+import { AdminModule } from './admin/admin.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +37,7 @@ import { HttpManagerInterceptor } from './http-manager.interceptor';
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    AdminModule
   ],
   providers: [
     {

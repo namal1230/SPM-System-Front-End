@@ -15,6 +15,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { UpdateMedicineComponent } from './update-medicine/update-medicine.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { UserRequestComponent } from './user-request/user-request.component';
+import { UserReqestRejectComponent } from './user-reqest-reject/user-reqest-reject.component';
+import { UserReqestAcceptComponent } from './user-reqest-accept/user-reqest-accept.component';
+import { UserReqestPendingComponent } from './user-reqest-pending/user-reqest-pending.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatIconModule } from '@angular/material/icon';
 // import { MatFormFieldControl } from '@angular/material/form-field';
 
 
@@ -26,6 +32,10 @@ import { MatInputModule } from '@angular/material/input';
     AiPharmacistComponent,
     SaveMedicineComponent,
     UpdateMedicineComponent,
+    UserRequestComponent,
+    UserReqestRejectComponent,
+    UserReqestAcceptComponent,
+    UserReqestPendingComponent,
   ],
   imports: [
     CommonModule,
@@ -39,10 +49,14 @@ import { MatInputModule } from '@angular/material/input';
     HttpClientModule,
     MatFormFieldModule,
     MatInputModule,
+    CommonModule,
+    MatIconModule,
+    MatPaginatorModule
 ],
   exports: [
     DashboardPharmacistComponent,
-    AiPharmacistComponent
+    AiPharmacistComponent,
+    UserRequestComponent
   ]
 })
 export class PharmacistModule { }

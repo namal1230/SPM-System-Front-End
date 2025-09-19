@@ -1,22 +1,23 @@
 <app-heading></app-heading>
+<section>
+  <mat-form-field style="width: 100%;" appearance="outline">
+    <mat-label>Medicine Name</mat-label>
+    <input matInput placeholder="Enter Medicine Name" [(ngModel)]="name">
+  </mat-form-field>
 
-<form [formGroup]="form" (ngSubmit)="createData()">
-    
-    <div class="form-group">
-      <label for="name">Medicine Name</label>
-      <input formControlName="name" type="text" class="form-control" id="name">
-    </div>
-    <div class="form-group">
-      <label for="location">Location</label>
-      <input formControlName="location" type="text" class="form-control" id="location">
-    </div>
-    <div class="form-group">
-      <label for="qty">Quantity</label>
-      <input formControlName="qty" type="number" class="form-control" id="qty">
-    </div>
+  <mat-form-field style="width: 100%;" appearance="outline">
+    <mat-label>Location</mat-label>
+    <input matInput placeholder="Enter Your Location" [(ngModel)]="location">
+  </mat-form-field>
 
-  <button [disabled]="form.invalid" type="submit" class="col-12 btn btn-primary">Find</button>
-</form>
+  <mat-form-field style="width: 100%;" appearance="outline">
+    <mat-label>Quantity</mat-label>
+    <input matInput placeholder="Enter You Want Quantity" [(ngModel)]="qty">
+  </mat-form-field>
+
+  <button type="submit" (click)="loadData()" class="col-12 btn btn-primary">Find</button>
+</section>
+
 
 <!-- --------------------------------------  -->
 
@@ -81,12 +82,26 @@
           <td mat-cell *matCellDef="let element"> {{element.expiry}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="location">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by loation">
+            Location
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="pharmacyName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by pharmacyName">
+            Pharmacy
+          </th>
+          <td mat-cell *matCellDef="let element"> {{element.pharmacyName}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="button">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             Options
           </th>
-          <td mat-cell *matCellDef="let element"><button style="color: white!important; background-color: rgb(148, 224, 107)!important; padding: 10px; border-radius: 5px;">Request </button>
-          <button style="color: white!important; background-color: rgb(107, 154, 224)!important; padding: 10px; border-radius: 5px;">Pay </button>
+          <td mat-cell *matCellDef="let element"> <button style="color: white!important; background-color: rgb(148, 224, 107)!important; padding: 10px; border-radius: 5px;" (click)="requests(element.id,element.name,element.pharmacyName,element.location)">Request </button>
+          <button style="color: white!important; background-color: rgb(107, 154, 224)!important; padding: 10px; border-radius: 5px;" (click)="pay(element.id,element.name,element.pharmacyName,element.location)">Pay </button>
           <button style="color: white!important; background-color: rgb(229, 236, 42)!important; padding: 10px; border-radius: 5px;">View Pharmay </button>
           </td>
         </ng-container>
@@ -100,11 +115,10 @@
   </div>
 
 
-  <!-- <div id="map">
+  <!--  <div id="map">
     <div  #mapContainer style="height: 500px; width: 100%;"></div>
     <div #map style=" width: 100%;"></div>
-  </div> -->
-
+  </div> --> 
 <div id="footer">
   <app-footer></app-footer>
 </div>

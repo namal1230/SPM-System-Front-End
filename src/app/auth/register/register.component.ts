@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { MainServiceService } from 'src/app/main-service.service';
 
 
@@ -11,16 +12,16 @@ import { MainServiceService } from 'src/app/main-service.service';
 
 export class RegisterComponent {
 
-  constructor(private mainService:MainServiceService) { }
+  constructor(private mainService: MainServiceService,
+    private router: Router
+  ) { }
 
   public onSubmit(form: any): void {
     this.mainService.register(form.value).subscribe(
-      (response:any)=>{
-        console.log(response);
+      (response: any) => {
         alert("Registration Successful");
-        form.reset();
-      },(error:any)=>{
-        console.log(error);
+        this.router.navigateByUrl('/');
+      }, (error: any) => {
         alert("Registration Failed");
       }
     );

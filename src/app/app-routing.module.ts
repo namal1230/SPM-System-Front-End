@@ -10,22 +10,33 @@ import { AiAssistantComponent } from './user/ai-assistant/ai-assistant.component
 import { DashboardPharmacistComponent } from './pharmacist/dashboard-pharmacist/dashboard-pharmacist.component';
 import { AiPharmacistComponent } from './pharmacist/ai-pharmacist/ai-pharmacist.component';
 import { PharmacyRegistrationComponent } from './auth/pharmacy-registration/pharmacy-registration.component';
+import { ForgotCredentialsComponent } from './auth/forgot-credentials/forgot-credentials.component';
+import { OTPVerificationComponent } from './auth/otpverification/otpverification.component';
+import { DashboardComponent as AdminDashboardComponent } from './admin/dashboard/dashboard.component';
+import { UserRequestComponent } from './user/user-request/user-request.component';
+import { UserRequestComponent as Pharmacy } from './pharmacist/user-request/user-request.component';
 
 const routes: Routes = [
   {path: '',component: LoginComponent, children:[
     {path:'',component:LoginCredentialsComponent},
     {path:'login/register',component:RegisterComponent},
-    {path:'register-pharmacy',component:PharmacyRegistrationComponent}
+    {path:'register-pharmacy',component:PharmacyRegistrationComponent},
+    {path:'login/forgot-password',component:ForgotCredentialsComponent},
+    {path:'otp-verification',component:OTPVerificationComponent}
+
   ]},
   {path: 'dashboard', component: DashboardComponent, children: [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomePageComponent},
-    {path: 'find-page', component: FindPageComponent}
+    {path: 'find-page', component: FindPageComponent},
   ]},
+  {path:'user-request',component:UserRequestComponent},
+  {path:'admin-dashboard',component:AdminDashboardComponent},
   {path: 'find-page', component: FindPageComponent},
   {path: 'ai-assistant',component: AiAssistantComponent},
   {path: 'ai-assistant-pharmacist',component: AiPharmacistComponent},
-  {path: 'dashboard-pharmacist', component: DashboardPharmacistComponent}
+  {path: 'dashboard-pharmacist', component: DashboardPharmacistComponent},
+  {path: 'user-medi-request', component: Pharmacy}
 ];
 
 @NgModule({

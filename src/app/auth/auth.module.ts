@@ -13,6 +13,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { PharmacyRegistrationComponent } from './pharmacy-registration/pharmacy-registration.component';
+import { OTPVerificationComponent } from './otpverification/otpverification.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import { PharmacyRegistrationComponent } from './pharmacy-registration/pharmacy-
     RegisterComponent,
     ForgotCredentialsComponent,
     GoogleAuthenticationComponent,
-    PharmacyRegistrationComponent
+    PharmacyRegistrationComponent,
+    OTPVerificationComponent
   ],
   imports: [
     CommonModule,

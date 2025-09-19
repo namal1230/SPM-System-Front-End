@@ -13,8 +13,16 @@ import { AppRoutingModule } from "src/app/app-routing.module";
 import { MatTableModule } from '@angular/material/table';
 import { AiAssistantComponent } from './ai-assistant/ai-assistant.component';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatFormFieldModule, MatLabel } from '@angular/material/form-field';
+import { UserRequestComponent } from './user-request/user-request.component';
+import { AcceptRequestComponent } from './accept-request/accept-request.component';
+import { RejectRequetComponent } from './reject-requet/reject-requet.component';
+import { RequestOverviewComponent } from './request-overview/request-overview.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { HttpClientModule } from '@angular/common/http';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSortModule } from '@angular/material/sort';
+import { PaymentComponent } from './payment/payment.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -22,7 +30,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     HomePageComponent,
     FooterComponent,
     FindPageComponent,
-    AiAssistantComponent
+    AiAssistantComponent,
+    UserRequestComponent,
+    AcceptRequestComponent,
+    RejectRequetComponent,
+    RequestOverviewComponent,
+    PaymentComponent
   ],
   imports: [
     CommonModule,
@@ -35,14 +48,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     FormsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatButtonModule,
+    HttpClientModule
 ],
   exports: [
     DashboardComponent,
     HomePageComponent,
     FooterComponent,
     FindPageComponent,
-    AiAssistantComponent
+    AiAssistantComponent,
+    UserRequestComponent
   ]
 })
 export class UserModule { }

@@ -10,36 +10,30 @@ import { UserAuthService } from 'src/app/user-auth.service';
   templateUrl: './login-credentials.component.html',
   styleUrls: ['./login-credentials.component.scss']
 })
-export class LoginCredentialsComponent  {
-  constructor(private route:Router,
-    private mainService:MainServiceService,
-    private userAuthSevice:UserAuthService) { }
+export class LoginCredentialsComponent {
+  constructor(private route: Router,
+    private mainService: MainServiceService,
+    private userAuthSevice: UserAuthService) { }
 
-  signIn(loginForm:NgForm){
+  signIn(loginForm: NgForm) {
     this.mainService.login(loginForm.value).subscribe(
-      (response:any)=>{
+      (response: any) => {
         alert("Login Successful");
-        console.log(response.jwtToken);
         this.userAuthSevice.setRoles(response.authority);
         this.userAuthSevice.setToken(response.jwtToken);
         this.userAuthSevice.setUserName(response.username);
         this.userAuthSevice.setUserId(response.id);
-        if(response.authority==="ADMIN"){
-          console.log("admin");
-          this.route.navigate(['/dashboard-pharmacist']);
-        } else if(response.authority==="USER"){
-          console.log("user");
+        if (response.authority === "ADMIN") {
+          this.route.navigate(['/admin-dashboard']);
+        } else if (response.authority === "USER") {
           this.route.navigate(['/dashboard']);
-        } else if(response.authority==="PHARMACY"){
-          console.log("pharmacy");
+        } else if (response.authority === "PHARMACY") {
           this.route.navigate(['/dashboard-pharmacist']);
         } else {
-          console.log("unknown user");
           this.route.navigate(['/']);
         }
-        console.log(response);
-      },(error:any)=>{
-        console.log(error);
+
+      }, (error: any) => {
         this.route.navigate(['/']);
         alert("Invalid Credentials");
       }
