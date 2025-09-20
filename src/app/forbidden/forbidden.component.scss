@@ -1,0 +1,22 @@
+.forbidden-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 80vh;
+  text-align: center;
+
+  h1 {
+    font-size: 3rem;
+    color: #d32f2f;
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin: 1rem 0;
+  }
+
+  button {
+    margin-top: 1rem;
+  }
+}

@@ -2,10 +2,14 @@
 <form #aiForm="ngForm" class="mt-10">
   <div id="ai-box">
     <div id="inner-box">
-      <input id="first-name" (keyup.enter)="sendRequest()"  [(ngModel)]="question" type="text" ngModel name="first-name" autocomplete="given-name" class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6" placeholder="Ask Anything AI Replys you"/>
-      <span>hi {{AIResponse}}</span>
+      <input id="first-name" (keyup.enter)="sendRequest()" [(ngModel)]="question" type="text" ngModel name="first-name"
+        autocomplete="given-name"
+        class="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+        placeholder="Ask Anything AI Replys you" />
+      <span *ngIf="loading">🤖 AI is thinking...</span>
+      <span *ngIf="!loading && AIResponse">{{AIResponse}}</span>
     </div>
-    
+
   </div>
 </form>
 

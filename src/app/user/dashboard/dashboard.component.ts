@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
- 
+
 }

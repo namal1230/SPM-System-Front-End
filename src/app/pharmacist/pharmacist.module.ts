@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { DashboardPharmacistComponent } from './dashboard-pharmacist/dashboard-pharmacist.component';
 import { HeadingComponent } from './heading/heading.component';
 import { FooterComponent } from './footer/footer.component';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatSort, Sort, MatSortModule} from '@angular/material/sort';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatSort, Sort, MatSortModule } from '@angular/material/sort';
 import { MatButton, MatButtonModule } from '@angular/material/button';
-import {MatTabsModule} from '@angular/material/tabs';
+import { MatTabsModule } from '@angular/material/tabs';
 import { AppRoutingModule } from "src/app/app-routing.module";
 import { AiPharmacistComponent } from './ai-pharmacist/ai-pharmacist.component';
 import { SaveMedicineComponent } from './save-medicine/save-medicine.component';
@@ -21,8 +21,6 @@ import { UserReqestAcceptComponent } from './user-reqest-accept/user-reqest-acce
 import { UserReqestPendingComponent } from './user-reqest-pending/user-reqest-pending.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
-// import { MatFormFieldControl } from '@angular/material/form-field';
-
 
 @NgModule({
   declarations: [
@@ -52,7 +50,7 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     MatIconModule,
     MatPaginatorModule
-],
+  ],
   exports: [
     DashboardPharmacistComponent,
     AiPharmacistComponent,

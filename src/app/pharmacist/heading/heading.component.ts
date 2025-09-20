@@ -7,10 +7,10 @@ import { UserAuthService } from 'src/app/user-auth.service';
   styleUrls: ['./heading.component.scss']
 })
 export class HeadingComponent {
-  
-  constructor(private userAuth:UserAuthService) { }
-  
-  signOut(){
+
+  constructor(private userAuth: UserAuthService) { }
+
+  signOut() {
     this.userAuth.clear();
   }
 }

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HeadingComponent } from './heading/heading.component';
-import {MatTabsModule} from '@angular/material/tabs'
-import {MatIconModule} from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs'
+import { MatIconModule } from '@angular/material/icon';
 import { HomePageComponent } from './home-page/home-page.component';
 import { FooterComponent } from './footer/footer.component';
 import { FindPageComponent } from './find-page/find-page.component';
@@ -22,7 +22,6 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
-import { PaymentComponent } from './payment/payment.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -34,8 +33,7 @@ import { PaymentComponent } from './payment/payment.component';
     UserRequestComponent,
     AcceptRequestComponent,
     RejectRequetComponent,
-    RequestOverviewComponent,
-    PaymentComponent
+    RequestOverviewComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +51,7 @@ import { PaymentComponent } from './payment/payment.component';
     MatSortModule,
     MatButtonModule,
     HttpClientModule
-],
+  ],
   exports: [
     DashboardComponent,
     HomePageComponent,

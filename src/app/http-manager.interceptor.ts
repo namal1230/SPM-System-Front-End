@@ -13,13 +13,13 @@ import { Router } from '@angular/router';
 @Injectable()
 export class HttpManagerInterceptor implements HttpInterceptor {
 
-  constructor(private authService:UserAuthService,
-    private router:Router
-  ) {}
+  constructor(private authService: UserAuthService,
+    private router: Router
+  ) { }
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    
-    if(request.headers.get('No-Auth') === 'True') {
+
+    if (request.headers.get('No-Auth') === 'True') {
       return next.handle(request.clone());
     }
     const token = this.authService.getToken();

@@ -18,14 +18,10 @@
   <button type="submit" (click)="loadData()" class="col-12 btn btn-primary">Find</button>
 </section>
 
-
-<!-- --------------------------------------  -->
-
 <div id="container">
   <div id="table">
     <div id="table-container">
-      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange"
-        class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange" class="mat-elevation-z8">
 
         <ng-container matColumnDef="id">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by id">
@@ -34,7 +30,6 @@
           <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
 
-        <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
             Medicine Name
@@ -42,7 +37,6 @@
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
-        <!-- Brand Column -->
         <ng-container matColumnDef="brand">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by brand">
             Brand
@@ -50,7 +44,6 @@
           <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
         </ng-container>
 
-        <!-- Category Column -->
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by category">
             Category
@@ -58,7 +51,6 @@
           <td mat-cell *matCellDef="let element"> {{element.category}} </td>
         </ng-container>
 
-        <!-- Price Column -->
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price">
             Price
@@ -66,7 +58,6 @@
           <td mat-cell *matCellDef="let element"> {{element.price}} </td>
         </ng-container>
 
-        <!-- Quantity Column -->
         <ng-container matColumnDef="quantity">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity">
             Quantity
@@ -74,7 +65,6 @@
           <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
         </ng-container>
 
-        <!-- Expiry Column -->
         <ng-container matColumnDef="expiry">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by expiry">
             Expiry Date
@@ -100,27 +90,28 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             Options
           </th>
-          <td mat-cell *matCellDef="let element"> <button style="color: white!important; background-color: rgb(148, 224, 107)!important; padding: 10px; border-radius: 5px;" (click)="requests(element.id,element.name,element.pharmacyName,element.location)">Request </button>
-          <button style="color: white!important; background-color: rgb(107, 154, 224)!important; padding: 10px; border-radius: 5px;" (click)="pay(element.id,element.name,element.pharmacyName,element.location)">Pay </button>
-          <button style="color: white!important; background-color: rgb(229, 236, 42)!important; padding: 10px; border-radius: 5px;">View Pharmay </button>
+          <td mat-cell *matCellDef="let element"> <button
+              style="color: white!important; background-color: rgb(148, 224, 107)!important; padding: 10px; border-radius: 5px;"
+              (click)="requests(element.id,element.name,element.pharmacyName,element.location)">Request </button>
+            <button
+              style="color: white!important; background-color: rgb(107, 154, 224)!important; padding: 10px; border-radius: 5px;"
+              (click)="pay(element.id,element.name,element.pharmacyName,element.location)">Pay </button>
+            <button
+              style="color: white!important; background-color: rgb(229, 236, 42)!important; padding: 10px; border-radius: 5px;">View
+              Pharmay </button>
           </td>
         </ng-container>
 
-        <!-- Header and Row Rendering -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-    </div>
   </div>
+   <mat-paginator [length]="totalElements" [pageSize]="pageSize" [pageIndex]="pageIndex"
+    [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons (page)="pageChanged($event)">
+  </mat-paginator>
+</div>
 
-
-  <!--  <div id="map">
-    <div  #mapContainer style="height: 500px; width: 100%;"></div>
-    <div #map style=" width: 100%;"></div>
-  </div> --> 
 <div id="footer">
   <app-footer></app-footer>
 </div>
-
-

@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { RequestServiceService } from 'src/app/request-service.service';
+
 export interface PeriodicElement {
-  id:number;
+  id: number;
   name: string;
   brand: string;
   category: string;
@@ -12,67 +13,78 @@ export interface PeriodicElement {
   userName: string;
   userEmail: string;
 }
+
 @Component({
   selector: 'app-user-reqest-reject',
   templateUrl: './user-reqest-reject.component.html',
   styleUrls: ['./user-reqest-reject.component.scss']
 })
+
 export class UserReqestRejectComponent {
-displayedColumns: string[] = ['id','name', 'brand', 'category','quantity','userName','userEmail'];
+  displayedColumns: string[] = ['id', 'name', 'brand', 'category', 'quantity', 'userName', 'userEmail'];
   dataSource = new MatTableDataSource<PeriodicElement>([]);
 
+  totalElements: number = 0;
+  pageSize: number = 10;
+  pageIndex: number = 0;
+
   @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
-   this.http.get<PeriodicElement | PeriodicElement[]>(
-     "http://localhost:8080/api/v1/user/get-all-request-reject?id="+localStorage.getItem("id")
-   ).subscribe((res) => {
-     console.log(res);
+    this.loadData2();
+  }
 
-     if (Array.isArray(res)) {
-       // Case: backend returns a list
-       this.dataSource = new MatTableDataSource(res);
-     } else {
-       // Case: backend returns a single object
-       this.dataSource = new MatTableDataSource([res]);
-     }
+  loadData2(pageIndex: number = 0, pageSize: number = this.pageSize) {
+    let params = new HttpParams()
+      .set('page', pageIndex.toString())
+      .set('size', pageSize.toString());
 
-     this.dataSource.sort = this.sort;
-   });
- }
-
-  ngAfterViewInit() {
-     this.dataSource.sort = this.sort;
-   }
-
-   announceSortChange(sortState: Sort) {
-     if (sortState.direction) {
-       console.log(`Sorted ${sortState.direction}ending`);
-     } else {
-       console.log('Sorting cleared');
-     }
-   }
-
-  constructor(private http: HttpClient,
-      private request:RequestServiceService
-  ) {}
-
-    searchKey:string="";
-    loadData(){
-      this.http.get<PeriodicElement | PeriodicElement[]>(
-        "http://localhost:8080/api/v1/user/get-request-name-reject?name="+this.searchKey+"&id="+localStorage.getItem("id")
+    this.http.get<any>(
+      "http://localhost:8080/api/v1/user/get-all-request-reject?id=" + localStorage.getItem("id"), { params }
     ).subscribe((res) => {
-      console.log(res);
-
-      if (Array.isArray(res)) {
-        // Case: backend returns a list
-        this.dataSource = new MatTableDataSource(res);
-      } else {
-        // Case: backend returns a single object
-        this.dataSource = new MatTableDataSource([res]);
-      }
-
+      this.dataSource.data = res.content;
+      this.totalElements = res.totalElements;
+      this.pageIndex = res.number;
+      this.pageSize = res.size;
       this.dataSource.sort = this.sort;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.sort = this.sort;
+  }
+
+  announceSortChange(sortState: Sort) {
+    if (sortState.direction) {
+    } else {
     }
+  }
+
+  constructor(private http: HttpClient) { }
+
+  searchKey: string = "";
+
+  loadData() {
+    this.http.get<PeriodicElement | PeriodicElement[]>(
+      "http://localhost:8080/api/v1/user/get-request-name-reject?name=" + this.searchKey + "&id=" + localStorage.getItem("id")
+    ).subscribe((res) => {
+      if (Array.isArray(res)) {
+        this.dataSource = new MatTableDataSource(res);
+      } else {
+        this.dataSource = new MatTableDataSource([res]);
+      }
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  pageChanged(event: PageEvent) {
+    this.pageIndex = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.loadData2(this.pageIndex, this.pageSize);
+  }
+
+  onSearch() {
+    this.loadData2(0, this.pageSize);
+  }
 }

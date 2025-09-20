@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UserAuthService } from 'src/app/user-auth.service';
 
 @Component({
   selector: 'app-heading',
@@ -6,5 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./heading.component.scss']
 })
 export class HeadingComponent {
-  signOut(){}
+
+  constructor(private userAuth: UserAuthService) { }
+
+  signOut() {
+    this.userAuth.clear();
+  }
 }

@@ -1,8 +1,8 @@
-<app-heading/>
+<app-heading />
 
 <mat-tab-group id="tabs">
   <mat-tab label="Medicine">
-    
+
     <mat-form-field style="width: 100%;" appearance="outline">
       <mat-label>Search Medicine</mat-label>
       <input matInput (keyup.enter)="loadData()" placeholder="Enter Medicine Name" [(ngModel)]="searchKey">
@@ -19,7 +19,6 @@
           <td mat-cell *matCellDef="let element"> {{element.id}} </td>
         </ng-container>
 
-        <!-- Name Column -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name">
             Medicine Name
@@ -27,7 +26,6 @@
           <td mat-cell *matCellDef="let element"> {{element.name}} </td>
         </ng-container>
 
-        <!-- Brand Column -->
         <ng-container matColumnDef="brand">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by brand">
             Brand
@@ -35,7 +33,6 @@
           <td mat-cell *matCellDef="let element"> {{element.brand}} </td>
         </ng-container>
 
-        <!-- Category Column -->
         <ng-container matColumnDef="category">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by category">
             Category
@@ -43,7 +40,6 @@
           <td mat-cell *matCellDef="let element"> {{element.category}} </td>
         </ng-container>
 
-        <!-- Price Column -->
         <ng-container matColumnDef="price">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by price">
             Price
@@ -51,7 +47,6 @@
           <td mat-cell *matCellDef="let element"> {{element.price}} </td>
         </ng-container>
 
-        <!-- Quantity Column -->
         <ng-container matColumnDef="quantity">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by quantity">
             Quantity
@@ -59,7 +54,6 @@
           <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
         </ng-container>
 
-        <!-- Expiry Column -->
         <ng-container matColumnDef="expiry">
           <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by expiry">
             Expiry Date
@@ -71,13 +65,17 @@
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             Options
           </th>
-          <td mat-cell *matCellDef="let element"> <button style="color: white!important; background-color: rgb(224, 107, 107)!important; padding: 10px; border-radius: 5px;" (click)="delete(element.id)">Delete </button></td>
+          <td mat-cell *matCellDef="let element"> <button
+              style="color: white!important; background-color: rgb(224, 107, 107)!important; padding: 10px; border-radius: 5px;"
+              (click)="delete(element.id)">Delete </button></td>
         </ng-container>
 
-        <!-- Header and Row Rendering -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+      <mat-paginator [length]="totalElements" [pageSize]="pageSize" [pageIndex]="pageIndex"
+        [pageSizeOptions]="[5, 10, 20, 50, 100]" showFirstLastButtons (page)="pageChanged($event)">
+      </mat-paginator>
     </div>
   </mat-tab>
 

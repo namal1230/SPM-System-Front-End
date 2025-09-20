@@ -10,32 +10,34 @@ import { RequestServiceService } from 'src/app/request-service.service';
   styleUrls: ['./save-medicine.component.scss']
 })
 export class SaveMedicineComponent {
+  
   constructor(private http: HttpClient,
-    private request:RequestServiceService
-  ) {}
+    private request: RequestServiceService
+  ) { }
 
-  form=new FormGroup({
-    name:new FormControl('',Validators.required),
-    brand:new FormControl('',Validators.required),
-    category:new FormControl('',Validators.required),
-    price:new FormControl('',Validators.required),
-    quantity:new FormControl('',Validators.required),
-    expir:new FormControl('',Validators.required),
+  form = new FormGroup({
+    name: new FormControl('', Validators.required),
+    brand: new FormControl('', Validators.required),
+    category: new FormControl('', Validators.required),
+    price: new FormControl('', Validators.required),
+    quantity: new FormControl('', Validators.required),
+    expir: new FormControl('', Validators.required),
   })
+  
   createData() {
-    this.http.post<any>(this.request.baseUrl+'pharmacy/save-medicine',{
-      name:this.form.get('name')?.value,
-      brand:this.form.get('brand')?.value,
-      category:this.form.get('category')?.value,
-      price:this.form.get('price')?.value,
-      quantity:this.form.get('quantity')?.value,
-      expiry:this.form.get('expir')?.value,
-      userId:localStorage.getItem("id")
+    this.http.post<any>(this.request.baseUrl + 'pharmacy/save-medicine', {
+      name: this.form.get('name')?.value,
+      brand: this.form.get('brand')?.value,
+      category: this.form.get('category')?.value,
+      price: this.form.get('price')?.value,
+      quantity: this.form.get('quantity')?.value,
+      expiry: this.form.get('expir')?.value,
+      userId: localStorage.getItem("id")
     })
-    .subscribe(res=>{
-      if(res){
-        alert('Medicine Save SuccessFully..!')
-      }
-    });
+      .subscribe(res => {
+        if (res) {
+          alert('Medicine Save SuccessFully..!')
+        }
+      });
   }
 }
