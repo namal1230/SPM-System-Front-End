@@ -23,11 +23,16 @@ export class AppComponent implements OnInit {
   constructor(private auth: AuthService, router: Router) {
     window.handleCredentialResponse = (response: any) => {
       const idToken = response.credential;
+      localStorage.removeItem("Google ID");
       localStorage.setItem("Google ID", idToken);
 
       this.auth.loginWithGoogle(idToken).subscribe({
         next: (res: any) => {
           const data = res.data;
+          localStorage.removeItem('token');
+          localStorage.removeItem('userRole');
+          localStorage.removeItem('id');
+
           localStorage.setItem('token', data.jwtToken);
           localStorage.setItem('userRole', data.authority);
           localStorage.setItem('id', data.id);

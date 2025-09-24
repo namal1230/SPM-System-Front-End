@@ -8,6 +8,7 @@ export class UserAuthService {
   constructor() { }
 
   public setRoles(roles: []) {
+    localStorage.removeItem("roles");
     localStorage.setItem("roles", JSON.stringify(roles));
   }
 
@@ -16,6 +17,7 @@ export class UserAuthService {
   }
 
   public setUserName(username: string) {
+     localStorage.removeItem("username");
     localStorage.setItem("username", username);
   }
 
@@ -25,6 +27,7 @@ export class UserAuthService {
 
 
   public setToken(token: string) {
+    localStorage.removeItem("token");
     localStorage.setItem("token", token);
   }
 
@@ -41,6 +44,7 @@ export class UserAuthService {
   }
 
   public setUserId(id: number) {
+    localStorage.removeItem("id");
     localStorage.setItem("id", id.toString());
   }
 
