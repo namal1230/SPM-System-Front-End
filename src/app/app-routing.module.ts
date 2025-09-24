@@ -16,6 +16,7 @@ import { DashboardComponent as AdminDashboardComponent } from './admin/dashboard
 import { UserRequestComponent } from './user/user-request/user-request.component';
 import { UserRequestComponent as Pharmacy } from './pharmacist/user-request/user-request.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { LocationComponent } from './user/location/location.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,7 @@ const routes: Routes = [
   { path: 'ai-assistant-pharmacist', component: AiPharmacistComponent },
   { path: 'dashboard-pharmacist', component: DashboardPharmacistComponent },
   { path: 'user-medi-request', component: Pharmacy },
+  {path:'find/location/:id',component:LocationComponent},
   { path: 'forbidden', component: ForbiddenComponent }
 ];
 

@@ -22,6 +22,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSortModule } from '@angular/material/sort';
+import { LocationComponent } from './location/location.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -33,7 +34,8 @@ import { MatSortModule } from '@angular/material/sort';
     UserRequestComponent,
     AcceptRequestComponent,
     RejectRequetComponent,
-    RequestOverviewComponent
+    RequestOverviewComponent,
+    LocationComponent
   ],
   imports: [
     CommonModule,
@@ -56,9 +58,9 @@ import { MatSortModule } from '@angular/material/sort';
     DashboardComponent,
     HomePageComponent,
     FooterComponent,
-    FindPageComponent,
     AiAssistantComponent,
-    UserRequestComponent
+    UserRequestComponent,
+    LocationComponent
   ]
 })
 export class UserModule { }

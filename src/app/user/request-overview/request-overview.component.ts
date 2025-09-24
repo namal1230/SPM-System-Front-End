@@ -23,11 +23,12 @@ export class RequestOverviewComponent implements AfterViewInit {
       return;
     }
 
-    this.http.get<any>("http://localhost:8080/api/v1/user/get-average-count")
+    this.http.get<any>("http://localhost:8080/api/v1/user/get-average-count?id="+localStorage.getItem("id"))
       .subscribe((res) => {
-        const data1 = res.count1;
-        const data2 = res.count2;
-        const data3 = res.count3;
+        const page =res.data;
+        const data1 = page.count1;
+        const data2 = page.count2;
+        const data3 = page.count3;
 
         new Chart(ctx, {
           type: 'pie',

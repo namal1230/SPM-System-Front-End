@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MainServiceService } from 'src/app/main-service.service';
 import { RequestServiceService } from 'src/app/request-service.service';
@@ -24,7 +24,14 @@ export class PharmacyRegistrationComponent {
     password: new FormControl('', Validators.required),
     confirmpassword: new FormControl('', Validators.required),
     userName: new FormControl('', Validators.required)
-  })
+  }, { validators: this.passwordMatchValidator });
+
+  passwordMatchValidator(control: AbstractControl) {
+    const password = control.get('password')?.value;
+    const confirm = control.get('confirmpassword')?.value;
+    return password === confirm ? null : { passwordMismatch: true };
+  }
+
   onSubmit() {
     this.http.post<any>(this.request.baseUrl + 'pharmacy/register-request', {
       name: this.form.get('name')?.value,

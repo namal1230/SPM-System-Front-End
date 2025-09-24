@@ -21,14 +21,15 @@ export class UpdateMedicineComponent {
     this.http.get<any>(
       "http://localhost:8080/api/v1/pharmacy/get-medicine-by-name?key=" + this.searchKey + "&id=" + localStorage.getItem("id")
     ).subscribe((res) => {
+      const page = res.data;
       this.form.patchValue({
-        id: res.id,
-        name: res.name,
-        brand: res.brand,
-        category: res.category,
-        price: res.price,
-        quantity: res.quantity,
-        expir: res.expiry
+        id: page.id,
+        name: page.name,
+        brand: page.brand,
+        category: page.category,
+        price: page.price,
+        quantity: page.quantity,
+        expir: page.expiry
       });
     });
   }

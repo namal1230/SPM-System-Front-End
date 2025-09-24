@@ -12,15 +12,15 @@ export class MainServiceService {
   requestHeader = new HttpHeaders({ 'No-Auth': 'True' });
 
   public login(data: any) {
-    return this.httpClient.get(this.BaseUrl + 'api/v1/auth/login?name=' + data.username + '&password=' + data.password);
+    return this.httpClient.get(this.BaseUrl + 'api/v1/auth/login?name=' + data.name + '&password=' + data.password);
   }
 
   public register(data: any) {
     return this.httpClient.post(this.BaseUrl + 'api/v1/auth/register', {
-      "userName": data.username,
+      "userName": data.userName,
       "password": data.password,
       "email": data.email,
-      "role": data.role
+      "role": "USER"
     });
   }
 }

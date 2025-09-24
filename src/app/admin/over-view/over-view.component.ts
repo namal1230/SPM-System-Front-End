@@ -26,11 +26,11 @@ export class OverViewComponent implements AfterViewInit {
 
     this.http.get<any>("http://localhost:8080/api/v1/admin/get-average-count")
       .subscribe((res) => {
-        const data1 = res.count1;
-        const data2 = res.count2;
-        const data3 = res.count3;
-        const data4 = res.count4;
-        const data5 = res.count5;
+        const data1 = res.data.count1;
+        const data2 = res.data.count2;
+        const data3 = res.data.count3;
+        const data4 = res.data.count4;
+        const data5 = res.data.count5;
 
         new Chart(ctx, {
           type: 'pie',

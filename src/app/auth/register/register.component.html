@@ -1,27 +1,33 @@
-<h1>SignUp Page</h1>
-<form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
 
-  <label>User Name</label>
-  <input type="text" ngModel name="username" id="username" placeholder="UserName">
+  <div class="form-group">
+    <label for="userName">User Name</label>
+    <input type="text" formControlName="userName" class="form-control" id="userName" placeholder="User Name">
+  </div>
 
-  <label>User Email</label>
-  <input type="text" ngModel name="email" id="email" placeholder="UserEmail">
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+  </div>
 
-  <label>Password</label>
-  <input type="password" ngModel name="password" id="password" placeholder="Password">
 
-  <label>Confirm Password</label>
-  <input type="password" ngModel name="confirm-password" id="confirm-password" placeholder="Confirm Password">
+  <div class="form-group">
+    <label for="password">Password</label>
+    <input type="password" formControlName="password" class="form-control" id="password" placeholder="Password">
+  </div>
 
-  <mat-form-field appearance="outline" [color]="'primary'">
-    <mat-label>User Role</mat-label>
-    <select ngModel name="role" id="role" matNativeControl maxlength="10" required>
-      <option value="USER">User</option>
-      <option value="PHARMACY">Pharmacist</option>
-    </select>
-  </mat-form-field>
-  <p style="color: red;">Register As Pharmacy? <a routerLink="/register-pharmacy">Register</a></p>
+  <div class="form-group">
+    <label>Confirm Password</label>
+  <input type="password" formControlName="confirmpassword" class="form-control"
+    [ngClass]="{'error-input': form.errors?.['passwordMismatch']}" placeholder="Confirm Password">
 
-  <input matButton="outlined" class="button" type="submit" value="Register">
+  <p *ngIf="form.errors?.['passwordMismatch']" class="error-text">
+    ⚠ Passwords do not match
+  </p>
+  </div>
+  
+<p style="color: rgb(136, 255, 0);">Register As Pharmacy? <a routerLink="/register-pharmacy">Register</a></p>
+  <button [disabled]="form.invalid" type="submit" class="col-12 btn btn-primary">Register</button>
+
 </form>
 <p>Already have an account? <a routerLink="/">Login</a></p>

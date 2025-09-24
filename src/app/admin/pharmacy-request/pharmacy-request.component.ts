@@ -42,10 +42,11 @@ export class PharmacyRequestComponent implements OnInit, AfterViewInit {
     this.http.get<any>(
       "http://localhost:8080/api/v1/admin/get-pharmacy-request", { params }
     ).subscribe((res) => {
-      this.dataSource.data = res.content;
-      this.totalElements = res.totalElements;
-      this.pageIndex = res.number;
-      this.pageSize = res.size;
+      const page = res.data;
+      this.dataSource.data = page.content;
+      this.totalElements = page.totalElements;
+      this.pageIndex = page.number;
+      this.pageSize = page.size;
       this.dataSource.sort = this.sort;
     });
   }
@@ -69,14 +70,16 @@ export class PharmacyRequestComponent implements OnInit, AfterViewInit {
   loadData() {
     this.http.get<PeriodicElement | PeriodicElement[]>(
       "http://localhost:8080/api/v1/admin/find-pharmacy-inactive?name=" + this.searchKey
-    ).subscribe((res) => {
-      if (Array.isArray(res)) {
-        this.dataSource = new MatTableDataSource(res);
+    ).subscribe((res: any) => {
+      const page = res.data;
+      if (Array.isArray(page)) {
+        this.dataSource = new MatTableDataSource(page);
       } else {
-        this.dataSource = new MatTableDataSource([res]);
+        this.dataSource = new MatTableDataSource([page]);
       }
 
       this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -97,6 +100,11 @@ export class PharmacyRequestComponent implements OnInit, AfterViewInit {
   }
 
   onSearch() {
-    this.loadData2(0, this.pageSize);
+    this.pageIndex = 0;
+    if (this.searchKey.trim() !== '') {
+      this.loadData();
+    } else {
+      this.loadData2(this.pageIndex, this.pageSize); // reload all
+    }
   }
 }

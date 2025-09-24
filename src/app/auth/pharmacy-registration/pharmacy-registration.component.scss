@@ -78,3 +78,13 @@ mat-form-field{
   color: white;
   border-radius: 25px;
 }
+
+.error-input {
+  border: 2px solid red;
+}
+
+.error-text {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}

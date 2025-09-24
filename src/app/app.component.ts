@@ -27,17 +27,18 @@ export class AppComponent implements OnInit {
 
       this.auth.loginWithGoogle(idToken).subscribe({
         next: (res: any) => {
-          localStorage.setItem('token', res.jwtToken);
-          localStorage.setItem('userRole', res.authority);
-          localStorage.setItem('id', res.id);
+          const data = res.data;
+          localStorage.setItem('token', data.jwtToken);
+          localStorage.setItem('userRole', data.authority);
+          localStorage.setItem('id', data.id);
 
-          if (res.authority === "User not found" || res.authority === "User Not Found") {
+          if (data.authority === "User not found" || res.data.authority === "User Not Found") {
             alert("User not found! Please register first.");
-          } else if (res.authority === "ADMIN") {
+          } else if (data.authority === "ADMIN") {
             router.navigate(['/admin-dashboard']);
-          } else if (res.authority === "USER") {
+          } else if (data.authority === "USER") {
             router.navigate(['/dashboard']);
-          } else if (res.authority === "PHARMACY") {
+          } else if (data.authority === "PHARMACY") {
             router.navigate(['/dashboard-pharmacist']);
           }
         },

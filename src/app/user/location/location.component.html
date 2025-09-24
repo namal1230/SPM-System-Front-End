@@ -1,0 +1,13 @@
+<div class="map-container">
+  <div id="map"></div>
+</div>
+
+<div class="sidebar">
+  <h2>Directions</h2>
+
+  <input type="text" [(ngModel)]="origin" placeholder="Origin (address or lat,lng)">
+  <button (click)="getDirections()">Get Directions</button>
+
+  <h3 *ngIf="summary">{{ summary }}</h3>
+
+</div>

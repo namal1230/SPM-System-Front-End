@@ -31,11 +31,17 @@
   </div>
 
   <div class="form-group">
-    <label for="confirmpassword">Confirm Password</label>
-    <input type="password" formControlName="confirmpassword" class="form-control" id="confirmpassword"
-      placeholder="Confirm Password">
+    <label>Confirm Password</label>
+  <input type="password" formControlName="confirmpassword" class="form-control"
+    [ngClass]="{'error-input': form.errors?.['passwordMismatch']}" placeholder="Confirm Password">
+
+  <p *ngIf="form.errors?.['passwordMismatch']" class="error-text">
+    ⚠ Passwords do not match
+  </p>
   </div>
+  
 
   <button [disabled]="form.invalid" type="submit" class="col-12 btn btn-primary">Register</button>
 
 </form>
+<p>Already have an account? <a routerLink="/">Login</a></p>

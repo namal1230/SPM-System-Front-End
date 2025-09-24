@@ -1,10 +1,12 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Component, AfterViewInit, ViewChild, ElementRef, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { HttpParams, HttpClient } from '@angular/common/http';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
-import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 import { RequestServiceService } from 'src/app/request-service.service';
+import { UserAuthService } from 'src/app/user-auth.service';
+import { DirectionsServiceService } from '../directions-service.service';
+import { Router } from '@angular/router';
 
 
 export interface PeriodicElement {
@@ -49,10 +51,11 @@ export class FindPageComponent implements AfterViewInit, OnInit {
     this.http.get<any>(
       "http://localhost:8080/api/v1/pharmacy/get-all-medicine", { params }
     ).subscribe((res) => {
-      this.dataSource.data = res.content;
-      this.totalElements = res.totalElements;
-      this.pageIndex = res.number;
-      this.pageSize = res.size;
+      const page =res.data;
+      this.dataSource.data = page.content;
+      this.totalElements = page.totalElements;
+      this.pageIndex = page.number;
+      this.pageSize = page.size;
       this.dataSource.sort = this.sort;
     });
   }
@@ -63,13 +66,13 @@ export class FindPageComponent implements AfterViewInit, OnInit {
   }
 
   announceSortChange(sortState: Sort) {
-    if (sortState.direction) {
-    } else {
-    }
+    this.loadData2(this.pageIndex, this.pageSize);
   }
 
   constructor(private http: HttpClient,
-    private request: RequestServiceService
+    private request: RequestServiceService,
+    private directionService:DirectionsServiceService,
+    private router:Router
   ) { }
 
   name: string = "";
@@ -79,14 +82,16 @@ export class FindPageComponent implements AfterViewInit, OnInit {
   loadData() {
     this.http.get<PeriodicElement | PeriodicElement[]>(
       "http://localhost:8080/api/v1/pharmacy/find-medicne-user?name=" + this.name + "&location=" + this.location + "&qty=" + this.qty
-    ).subscribe((res) => {
-      if (Array.isArray(res)) {
-        this.dataSource = new MatTableDataSource(res);
+    ).subscribe((res:any) => {
+      const page = res.data;
+      if (Array.isArray(page)) {
+        this.dataSource = new MatTableDataSource(page);
       } else {
-        this.dataSource = new MatTableDataSource([res]);
+        this.dataSource = new MatTableDataSource([page]);
       }
 
       this.dataSource.sort = this.sort;
+     this.dataSource.paginator = this.paginator;
     });
   }
 
@@ -102,11 +107,12 @@ export class FindPageComponent implements AfterViewInit, OnInit {
       })
         .subscribe(res => {
           if (res) {
-            alert('Medicine Save SuccessFully..!')
+            alert('Medicine Requset Send Successfully..!')
           }
         });
     }
   }
+
 
   pay(id: any, names: any, pharmacy: any, location: any) {
     var payment = {
@@ -146,5 +152,9 @@ export class FindPageComponent implements AfterViewInit, OnInit {
 
   onSearch() {
     this.loadData2(0, this.pageSize);
+  }
+
+  find(location:string){
+    this.router.navigate(["find/location",location]);
   }
 }

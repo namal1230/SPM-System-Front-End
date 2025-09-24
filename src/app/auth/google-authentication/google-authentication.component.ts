@@ -21,7 +21,7 @@ export class GoogleAuthenticationComponent {
   ngOnInit(): void {
     google.accounts.id.initialize({
       client_id: this.CLIENT_ID,
-      callback: (response: any) => this.handleCredentialResponse(response),
+      callback: (response: any) => this.handleCredentialResponse(response.data),
     });
 
     google.accounts.id.renderButton(
@@ -31,11 +31,11 @@ export class GoogleAuthenticationComponent {
   }
 
   handleCredentialResponse(response: any) {
-    const idToken = response.credential;
+    const idToken = response.data.credential;
     this.auth.loginWithGoogle(idToken).subscribe({
       next: (res: any) => {
-        alert('Login Successful..!' + res.authority);
-        localStorage.setItem('app_jwt', res.jwtToken);
+        alert('Login Successful..!' + res.data.authority);
+        localStorage.setItem('app_jwt', res.data.jwtToken);
         this.route.navigate(['/dashboard']);
       },
       error: (err) =>{}

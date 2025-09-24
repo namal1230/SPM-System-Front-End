@@ -28,7 +28,7 @@ export class ActivePharmacyComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  
+
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -41,19 +41,19 @@ export class ActivePharmacyComponent implements OnInit, AfterViewInit {
   }
 
   loadData2(pageIndex: number = 0, pageSize: number = this.pageSize) {
-    
+
     let params = new HttpParams()
       .set('page', pageIndex.toString())
       .set('size', pageSize.toString());
-    
-    this.http.get<any>(
-      "http://localhost:8080/api/v1/admin/get-all-pharmacy",{ params }
-    ).subscribe((res:any) => {
 
-       this.dataSource.data = res.content; 
-        this.totalElements = res.totalElements;
-        this.pageIndex = res.number;
-        this.pageSize = res.size;   
+    this.http.get<any>(
+      "http://localhost:8080/api/v1/admin/get-all-pharmacy", { params }
+    ).subscribe((res: any) => {
+      const page = res.data;
+      this.dataSource.data = page.content;
+      this.totalElements = page.totalElements;
+      this.pageIndex = page.number;
+      this.pageSize = page.size;
       this.dataSource.sort = this.sort;
     });
   }
@@ -62,36 +62,42 @@ export class ActivePharmacyComponent implements OnInit, AfterViewInit {
 
   searchKey: string = '';
   list: Array<any> = [];
-  
-    loadData(){
-      this.http.get<PeriodicElement | PeriodicElement[]>(
-        "http://localhost:8080/api/v1/admin/find-pharmacy?name="+this.searchKey
-      ).subscribe((res) => {
-  
-        if (Array.isArray(res)) {
-          // Case: backend returns a list
-          this.dataSource = new MatTableDataSource(res);
-        } else {
-          // Case: backend returns a single object
-          this.dataSource = new MatTableDataSource([res]);
-        }
-  
-        this.dataSource.sort = this.sort;
-      });
-    }
+
+  loadData() {
+    this.http.get<PeriodicElement | PeriodicElement[]>(
+      "http://localhost:8080/api/v1/admin/find-pharmacy?name=" + this.searchKey
+    ).subscribe((res: any) => {
+      const page = res.data;
+      if (Array.isArray(page)) {
+        // Case: backend returns a list
+        this.dataSource = new MatTableDataSource(page);
+      } else {
+        // Case: backend returns a single object
+        this.dataSource = new MatTableDataSource([page]);
+      }
+
+      this.dataSource.sort = this.sort;
+      this.dataSource.paginator = this.paginator;
+    });
+  }
 
   report(id: any) {
     if (confirm("Are you sure to report this account ? " + id)) {
       this.http.get("http://localhost:8080/api/v1/admin/update-status-pharmacy?id=" + id)
         .subscribe(res => {
           alert('Pharmacy Status Changed Successfully..!');
-          this.loadData2(this.pageIndex,this.pageSize);
+          this.loadData2(this.pageIndex, this.pageSize);
         });
     }
   }
 
   onSearch() {
-    this.loadData2(0, this.pageSize);
+    this.pageIndex = 0;
+    if (this.searchKey.trim() !== '') {
+      this.loadData();
+    } else {
+      this.loadData2(this.pageIndex, this.pageSize); // reload all
+    }
   }
 
   pageChanged(event: PageEvent) {
